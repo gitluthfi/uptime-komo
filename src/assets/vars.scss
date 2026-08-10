@@ -1,0 +1,46 @@
+// ============================
+// Light theme
+// ============================
+$primary: #3b82f6; // Primary
+$primary-dark: #2563eb; // Primary Dark (hover/active)
+$success: #22c55e; // UP
+$danger: #ef4444; // DOWN
+$warning: #f59e0b; // DEGRADED
+$maintenance: #3b82f6; // MAINTENANCE
+$secondary: #94a3b8; // PAUSED
+
+$body-bg: #f8fafc; // Background
+$card-bg: #ffffff; // Card
+$body-color: #1e293b; // Text
+$secondary-text: #64748b; // Text Muted
+$border-color: #e2e8f0; // Border
+
+$link-color: #111;
+$border-radius: 50rem;
+
+$highlight: $primary-dark; // Primary hover/active state
+$highlight-white: rgba($primary, 0.08); // Light highlight bg
+
+// ============================
+// Dark theme
+// ============================
+$dark-page-bg: #0f172a; // Background
+$dark-bg: #1e293b; // Card
+$dark-bg2: lighten($dark-bg, 4%); // Secondary surfaces (inputs, hover states)
+$dark-border-color: #334155; // Border
+$dark-font-color: #f1f5f9; // Text
+$dark-secondary-text: #94a3b8; // Text Muted
+$dark-font-color2: $dark-page-bg; // Text on colored/accent backgrounds
+$dark-header-bg: $dark-bg;
+
+$dark-primary: #60a5fa; // Primary
+$dark-success: #4ade80; // UP
+$dark-danger: #f87171; // DOWN
+$dark-warning: #fbbf24; // DEGRADED
+$dark-maintenance: #a78bfa; // MAINTENANCE
+
+$easing-in: cubic-bezier(0.54, 0.78, 0.55, 0.97);
+$easing-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easing-in-out: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+
+$dropdown-border-radius: 0.5rem;

@@ -1,0 +1,13 @@
+services:
+  uptime-komo:
+    build:
+      context: .
+      dockerfile: docker/dockerfile
+      target: release
+    container_name: uptime-komo
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    ports:
+      # <Host Port>:<Container Port>
+      - "3001:3001"
