@@ -283,8 +283,12 @@ let needSetup = false;
             // subpath it actually requested.
             response.redirect("status/" + uptimeKumaEntryPage.replace("statusPage-", ""));
         } else {
-            // "#/..." lands on the client-side (hash-routed) dashboard page.
-            response.redirect("#/dashboard");
+            // Can't redirect to a hash route: the browser never sends the fragment
+            // back to the server, so a redirect from "/" to "/#/dashboard" would just
+            // hit this same handler again and loop forever. Serve the app directly;
+            // Entry.vue fetches this same decision via /api/entry-page and routes
+            // client-side.
+            response.send(server.indexHTML);
         }
     });
 

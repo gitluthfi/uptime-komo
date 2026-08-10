@@ -146,10 +146,12 @@ class SetupDatabase {
             });
 
             app.get("/", async (request, response) => {
-                // Relative (no leading "/") so the browser resolves it against
-                // whatever subpath it actually requested, and "#/..." so it lands
-                // on the client-side (hash-routed) setup-database page.
-                response.redirect("#/setup-database");
+                // Can't redirect to a hash route: the browser never sends the
+                // fragment back to the server, so a redirect from "/" to
+                // "/#/setup-database" would just hit this same handler again and
+                // loop forever. Serve the app directly; SetupDatabase.vue checks
+                // /setup-database-info and routes client-side.
+                response.send(this.server.indexHTML);
             });
 
             app.get("/api/entry-page", async (request, response) => {
