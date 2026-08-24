@@ -18,6 +18,23 @@ export default {
         };
     },
     async mounted() {
+        // Server-rendered status page routes (e.g. /status/:slug, /status-page) are
+        // real paths with no hash, so the hash-based router never matches them and
+        // falls through to this default route. Render the status page directly
+        // instead of asking the entry-page API where to go.
+        // Vue Router's hash history rewrites location.pathname back to its own base
+        // once it initializes, so use the path stashed before that happened.
+        const initialPathname = window.__uptimeKomoInitialPathname || location.pathname;
+        const slugMatch = initialPathname.match(/\/status\/([^/]+)\/?$/);
+        if (slugMatch) {
+            this.statusPageSlug = slugMatch[1];
+            return;
+        }
+        if (/\/status(-page)?\/?$/.test(initialPathname)) {
+            this.statusPageSlug = "default";
+            return;
+        }
+
         // There are only 3 cases that could come in here.
         // 1. Matched status Page domain name
         // 2. Vue Frontend Dev

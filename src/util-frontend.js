@@ -105,7 +105,10 @@ const SERVER_RENDERED_SUFFIXES = [
  * @returns {string} App base path, no trailing slash (e.g. "" or "/uptime-komo")
  */
 export function getAppBasePath() {
-    let path = location.pathname;
+    // Vue Router's hash history rewrites location.pathname back to its own base
+    // the moment it initializes, so the real initial path (stashed in index.html,
+    // before any module code runs) is the only reliable source once the app is up.
+    let path = window.__uptimeKomoInitialPathname || location.pathname;
 
     for (const suffix of SERVER_RENDERED_SUFFIXES) {
         if (suffix.test(path)) {

@@ -4,7 +4,7 @@
 
 # Uptime Komo
 
-Uptime Komo is an easy-to-use self-hosted monitoring tool, customized for internal use. It is an internal fork of [Uptime Kuma](https://github.com/louislam/uptime-kuma).
+Uptime Komo is an easy-to-use self-hosted monitoring tool, customized for internal use. It started as an internal fork of [Uptime Kuma](https://github.com/louislam/uptime-kuma), but has since been given its own identity — a fresh logo and icon set, a distinct blue color system with full dark mode support, and a softer, less "pill-heavy" shape language across buttons, cards, and the heartbeat bar — plus a trimmed-down set of notification providers for internal use.
 
 ## ⭐ Features
 
@@ -73,10 +73,14 @@ pm2 startup && pm2 save
 
 ## 🖼 Screenshots
 
-Light Mode:
+Dashboard (Light Mode):
 
-<img src="https://uptime.kuma.pet/img/light.jpg" width="512" alt="Uptime Komo Light Mode Screenshot of how the Dashboard looks" />
+<img src=".github/screenshots/dashboard-light.png" width="700" alt="Uptime Komo Dashboard Screenshot, Light Mode" />
 
-Status Page:
+Dashboard (Dark Mode):
 
-<img src="https://user-images.githubusercontent.com/1336778/134628766-a3fe0981-0926-4285-ab46-891a21c3e4cb.png" width="512" alt="Uptime Komo Status Page Screenshot" />
+<img src=".github/screenshots/dashboard-dark.png" width="700" alt="Uptime Komo Dashboard Screenshot, Dark Mode" />
+
+Public Status Page:
+
+<img src=".github/screenshots/status-page.png" width="700" alt="Uptime Komo Public Status Page Screenshot" />

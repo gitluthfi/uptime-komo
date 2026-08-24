@@ -587,8 +587,8 @@ export default {
                     offsetY = centerY - height / 2;
                 }
 
-                // Calculate border radius based on current width (pill shape = half of width)
-                const borderRadius = width / 2;
+                // Soft rounded-rect beats, scaled with the current width
+                const borderRadius = width / 4;
 
                 // Get color based on beat status
                 let color = this.getBeatColor(beat, colors);

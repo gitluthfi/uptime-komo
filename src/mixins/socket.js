@@ -91,9 +91,12 @@ export default {
             }
 
             // No need to connect to the socket.io for status page
-            if (!bypass && location.pathname) {
+            // Vue Router's hash history rewrites location.pathname back to its own
+            // base once it initializes, so use the stashed initial path instead.
+            const initialPathname = window.__uptimeKomoInitialPathname || location.pathname;
+            if (!bypass && initialPathname) {
                 for (let page of noSocketIOPages) {
-                    if (location.pathname.match(page)) {
+                    if (initialPathname.match(page)) {
                         return;
                     }
                 }
@@ -780,7 +783,7 @@ export default {
                 } else if (lastHeartBeat.status === UP) {
                     result[monitorID] = {
                         text: this.$t("Up"),
-                        color: "primary",
+                        color: "success",
                     };
                 } else if (lastHeartBeat.status === DOWN) {
                     result[monitorID] = {

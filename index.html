@@ -7,6 +7,10 @@
         // relative asset/link below resolves correctly. No build-time or runtime
         // configuration needed. Must run before any other tag in <head>.
         (function () {
+            // Stashed before Vue Router's hash history initializes, since it
+            // rewrites location.pathname back to its own base as soon as it mounts.
+            window.__uptimeKomoInitialPathname = location.pathname;
+
             var path = location.pathname;
             var suffixes = [
                 /\/status-page\/?$/,
