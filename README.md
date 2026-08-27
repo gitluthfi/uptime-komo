@@ -18,6 +18,26 @@ Uptime Komo is an easy-to-use self-hosted monitoring tool, customized for intern
 - Certificate info
 - Proxy support
 - 2FA support
+- Semi-automatic monitor registration by scanning a Kubernetes namespace (see below)
+
+## ☸️ Semi-Automatic Monitor Registration (Kubernetes)
+
+Instead of adding monitors one by one, you can point Uptime Komo at a Kubernetes
+namespace and have it discover and register monitors for you: click **Scan
+Kubernetes Namespace** on the dashboard, enter a namespace, and every Service in
+it is automatically registered as a monitor (re-scanning skips services that are
+already registered). Each Service port is checked over the in-cluster DNS name
+(`<service>.<namespace>.svc.cluster.local`) and classified automatically — ports
+named/numbered like HTTP (e.g. `http`, `web`, `80`, `8080`, `443`) become HTTP(S)
+monitors, everything else becomes a plain TCP port check.
+
+This requires Uptime Komo to be **running inside the target Kubernetes
+cluster**, using its Pod's ServiceAccount to talk to the API server — it does
+not support scanning a remote/external cluster via kubeconfig. The
+ServiceAccount needs read access to `services`; apply the example RBAC in
+[`kubernetes/rbac.yaml`](kubernetes/rbac.yaml) (adjust the namespace/name to
+match your deployment) and make sure that ServiceAccount is set on Uptime
+Komo's own Pod spec.
 
 ## 🔧 How to Install
 

@@ -67,6 +67,7 @@
     },
     "dependencies": {
         "@grpc/grpc-js": "~1.8.22",
+        "@kubernetes/client-node": "~1.4.0",
         "@louislam/ping": "~0.4.4-mod.1",
         "@louislam/sqlite3": "15.1.6",
         "@vvo/tzdb": "~6.198.0",

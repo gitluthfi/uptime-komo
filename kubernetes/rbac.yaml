@@ -1,0 +1,44 @@
+# RBAC required for the "Scan Kubernetes Namespace" feature.
+#
+# Uptime Komo reads this via its Pod's ServiceAccount (in-cluster config), so it
+# only needs read access to Services — nothing else, and no write permissions.
+#
+# The namespace to scan is entered by the user at runtime and can be any
+# namespace in the cluster, so this uses a ClusterRole + ClusterRoleBinding
+# rather than a namespace-scoped Role. If you only ever scan a fixed, known set
+# of namespaces, you can swap the ClusterRoleBinding for one RoleBinding per
+# namespace instead, referencing the same ClusterRole.
+#
+# Usage:
+#   1. Edit the ServiceAccount name/namespace below to match your Uptime Komo
+#      deployment (or set serviceAccountName: uptime-komo on its Pod spec and
+#      leave this as-is).
+#   2. kubectl apply -f kubernetes/rbac.yaml
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: uptime-komo
+  namespace: uptime-komo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: uptime-komo-service-reader
+rules:
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: uptime-komo-service-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: uptime-komo-service-reader
+subjects:
+  - kind: ServiceAccount
+    name: uptime-komo
+    namespace: uptime-komo
